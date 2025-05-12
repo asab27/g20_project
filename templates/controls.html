@@ -1,0 +1,12 @@
+<form method="get">
+    <input type="hidden" name="classname" value="{{ classname }}">
+    <button type="submit" name="option" value="first" {{ 'disabled' if butshow == 'disabled' }}>Primeiro</button>
+    <button type="submit" name="option" value="previous" {{ 'disabled' if butshow == 'disabled' }}>Anterior</button>
+    <button type="submit" name="option" value="next" {{ 'disabled' if butshow == 'disabled' }}>Próximo</button>
+    <button type="submit" name="option" value="last" {{ 'disabled' if butshow == 'disabled' }}>Último</button>
+    <button type="submit" name="option" value="edit" {{ 'disabled' if butshow == 'disabled' }}>Editar</button>
+    <button type="submit" name="option" value="delete" {{ 'disabled' if butshow == 'disabled' }}>Eliminar</button>
+    <button type="submit" name="option" value="insert" {{ 'disabled' if butshow == 'disabled' }}>Novo</button>
+    <button type="submit" name="option" value="exit">Sair</button>
+</form>
+

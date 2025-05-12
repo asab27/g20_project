@@ -1,0 +1,119 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Fri May  2 21:24:13 2025
+
+@author: Miguel
+"""
+
+
+/* Estilos gerais da página */
+body {
+    font-family: Arial, sans-serif;
+    margin: 30px;
+    background-color: #f4f4f4;
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+table {
+    width: 100%;
+    margin-bottom: 20px;
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+}
+
+input[type="text"], input[type="hidden"] {
+    padding: 8px;
+    margin: 5px;
+    width: 200px;
+}
+
+/* Estilo dos botões */
+button {
+    padding: 10px 20px;
+    margin: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+/* Estilo do formulário */
+.form-container {
+    margin: 20px 0;
+}
+
+.form-container label {
+    display: block;
+    margin: 5px 0;
+}
+
+/* Botões na parte inferior */
+.button-container {
+    margin-top: 20px;
+}
+
+.button-container button {
+    background-color: #007BFF;
+}
+
+.button-container button:hover {
+    background-color: #0056b3;
+}
+
+.button-container button:active {
+    background-color: #004085;
+}
+
+.button-container .cancel-btn {
+    background-color: #DC3545;
+}
+
+.button-container .cancel-btn:hover {
+    background-color: #c82333;
+}
+
+.button-container .cancel-btn:active {
+    background-color: #bd2130;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    body {
+        margin: 10px;
+    }
+
+    table, th, td {
+        font-size: 14px;
+    }
+
+    input[type="text"], input[type="hidden"] {
+        width: 100%;
+    }
+
+    .button-container button {
+        width: 100%;
+    }
+}

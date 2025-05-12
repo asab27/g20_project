@@ -1,0 +1,27 @@
+<!-- templates/ticketassignment.html -->
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <title>Atribuição de Ticket</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+</head>
+<body>
+    <h1>Atribuição de Ticket</h1>
+    <form method="POST">
+        <input type="hidden" name="classname" value="TicketAssignment">
+        <label>ID do Ticket: <input type="text" name="ticket_id" value="{{ data['ticket_id'] }}"></label>
+        <label>ID do Agente: <input type="text" name="agent_id" value="{{ data['agent_id'] }}"></label>
+        <label>Data de Atribuição: <input type="text" name="assignment_date" value="{{ data['assignment_date'] }}"></label>
+        <label>Tempo de Resolução: <input type="text" name="resolution_time" value="{{ data['resolution_time'] }}"></label>
+        <div>
+            <button type="submit" name="option" value="save" {{ 'disabled' if butedit == 'disabled' }}>Salvar</button>
+            <button type="submit" name="option" value="cancel" {{ 'disabled' if butedit == 'disabled' }}>Cancelar</button>
+        </div>
+    </form>
+
+    {% include "controls.html" with context %}
+</body>
+</html>
+
+

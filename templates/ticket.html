@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes do Ticket</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+</head>
+<body>
+
+    <h1>Ticket - Detalhes</h1>
+
+    <!-- Formulário de Edição/Inserção -->
+    <div class="form-container">
+        <form method="POST">
+            <input type="hidden" name="classname" value="Ticket">
+            <input type="hidden" name="ticket_id" value="{{ data['ticket_id'] }}">
+            
+            <label for="issue">Problema:</label>
+            <input type="text" name="issue" value="{{ data['issue'] }}">
+
+            <label for="submission_date">Data de Submissão:</label>
+            <input type="text" name="submission_date" value="{{ data['submission_date'] }}">
+
+            <label for="status">Status:</label>
+            <input type="text" name="status" value="{{ data['status'] }}">
+
+            <div>
+                <button type="submit" name="option" value="save" {% if butedit == 'disabled' %}disabled{% endif %}>Salvar</button>
+                <button type="submit" name="option" value="cancel" {% if butedit == 'disabled' %}disabled{% endif %}>Cancelar</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Controles de Navegação e Ação -->
+    <div>
+        <form method="get">
+            <input type="hidden" name="classname" value="Ticket">
+            <button type="submit" name="option" value="first" {% if butshow == 'disabled' %}disabled{% endif %}>Primeiro</button>
+            <button type="submit" name="option" value="previous" {% if butshow == 'disabled' %}disabled{% endif %}>Anterior</button>
+            <button type="submit" name="option" value="next" {% if butshow == 'disabled' %}disabled{% endif %}>Próximo</button>
+            <button type="submit" name="option" value="last" {% if butshow == 'disabled' %}disabled{% endif %}>Último</button>
+            <button type="submit" name="option" value="edit" {% if butshow == 'disabled' %}disabled{% endif %}>Editar</button>
+            <button type="submit" name="option" value="delete" {% if butshow == 'disabled' %}disabled{% endif %}>Excluir</button>
+            <button type="submit" name="option" value="insert" {% if butshow == 'disabled' %}disabled{% endif %}>Novo</button>
+            <button type="submit" name="option" value="exit" {% if butshow == 'disabled' %}disabled{% endif %}>Sair</button>
+        </form>
+    </div>
+
+    <!-- Exibição dos Dados do Ticket -->
+    {% if data %}
+        <h4>Detalhes do Ticket:</h4>
+        <table>
+            <tr><th>ID</th><td>{{ data['ticket_id'] }}</td></tr>
+            <tr><th>Problema</th><td>{{ data['issue'] }}</td></tr>
+            <tr><th>Data de Submissão</th><td>{{ data['submission_date'] }}</td></tr>
+            <tr><th>Status</th><td>{{ data['status'] }}</td></tr>
+        </table>
+    {% else %}
+        <p>Nenhum ticket encontrado.</p>
+    {% endif %}
+
+</body>
+</html>

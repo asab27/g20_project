@@ -1,0 +1,24 @@
+<!-- templates/solution.html -->
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <title>Solução</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+</head>
+<body>
+    <h1>Solução</h1>
+    <form method="POST">
+        <input type="hidden" name="classname" value="Solution">
+        <label>ID do Ticket: <input type="text" name="ticket_id" value="{{ data['ticket_id'] }}"></label>
+        <label>Resumo da Resolução: <input type="text" name="resolution_summary" value="{{ data['resolution_summary'] }}"></label>
+        <label>Data Resolvida: <input type="text" name="solved_date" value="{{ data['solved_date'] }}"></label>
+        <div>
+            <button type="submit" name="option" value="save" {{ 'disabled' if butedit == 'disabled' }}>Salvar</button>
+            <button type="submit" name="option" value="cancel" {{ 'disabled' if butedit == 'disabled' }}>Cancelar</button>
+        </div>
+    </form>
+
+    {% include "controls.html" with context %}
+</body>
+</html>

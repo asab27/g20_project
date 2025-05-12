@@ -1,20 +1,20 @@
 # -*- coding: utf-8 -*-
 
-from classes.agent import Agent
-#from classes.solution import Solution
+#from classes.agent import Agent
+from classes.solution import Solution
 #from classes.ticket import Ticket
 #from classes.ticket_assignment import TicketAssignment
 import datetime
 
-test_class = Agent
-ob = '101;João Pereira;TI;joao@empresa.com'
-db = 'data/tech_support.db'
-test_class.read(db)
-
-#test_class = Solution
-#ob = '500;1;Reinício do router;2025-01-12'
+#test_class = Agent
+#ob = '101;João Pereira;TI;joao@empresa.com'
 #db = 'data/tech_support.db'
 #test_class.read(db)
+
+test_class = Solution
+ob = '500;1;Reinício do router;2025-01-12'
+db = 'data/tech_support.db'
+test_class.read(db)
 
 #test_class = Ticket
 #ob = '1;Internet lenta;2025-01-10;Open'
