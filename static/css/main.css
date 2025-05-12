@@ -5,50 +5,98 @@ Created on Fri May  2 21:24:13 2025
 @author: Miguel
 """
 
-
-/* Estilos gerais da página */
-body {
-    font-family: Arial, sans-serif;
-    margin: 30px;
-    background-color: #f4f4f4;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-h1 {
-    text-align: center;
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 20px;
+    background-color: #f8f9fa;
     color: #333;
 }
 
-table {
-    width: 100%;
+body.index-background {
+    background-image: url("../images/indexbg.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    min-height: 100vh;
+    color: white;
+}
+
+.index-content {
+    padding: 80px 40px;
+    background-color: rgba(0, 0, 0, 0.5); /* transparente */
+    border-radius: 12px;
+    max-width: 600px;
+    margin: 100px auto;
+    text-align: center;
+}
+
+/* Cabeçalho */
+h1 {
     margin-bottom: 20px;
-    border-collapse: collapse;
+    text-align: center;
+    color: #0d6efd;
 }
 
-table, th, td {
+/* Formulário */
+.form-container {
+    max-width: 600px;
+    margin: auto;
+    background-color: #fff;
     border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.05);
 }
 
-th, td {
-    padding: 10px;
-    text-align: left;
+.form-container label {
+    display: block;
+    margin-top: 10px;
+    font-weight: 500;
 }
 
-input[type="text"], input[type="hidden"] {
-    padding: 8px;
-    margin: 5px;
-    width: 200px;
+.form-container input {
+    width: 100%;
+    padding: 8px 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
 }
 
-/* Estilo dos botões */
-button {
+/* Botões */
+.button-container {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.button-container button {
     padding: 10px 20px;
     margin: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    background-color: #4CAF50;
+    background-color: #0d6efd;
     color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 6px;
+    font-size: 15px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.button-container button:hover {
+    background-color: #084cdf;
+}
+
+.button-container button.cancel-btn {
+    background-color: #dc3545;
+}
+
+.button-container button.cancel-btn:hover {
+    background-color: #bb2d3b;
 }
 
 button:disabled {
@@ -56,64 +104,103 @@ button:disabled {
     cursor: not-allowed;
 }
 
-button:hover {
-    background-color: #45a049;
+/* Mensagens */
+p {
+    margin-top: 10px;
+    font-size: 14px;
 }
 
-/* Estilo do formulário */
-.form-container {
-    margin: 20px 0;
+p strong {
+    color: #198754;
 }
 
-.form-container label {
-    display: block;
-    margin: 5px 0;
+/* Navegação */
+nav {
+    background-color: #0d6efd;
+    padding: 10px;
+    margin-bottom: 20px;
 }
 
-/* Botões na parte inferior */
-.button-container {
-    margin-top: 20px;
+nav ul.menu {
+    list-style-type: none;
+    display: flex;
+    justify-content: flex-start;
+    gap: 10px;
 }
 
-.button-container button {
-    background-color: #007BFF;
+nav ul.menu li a.button {
+    color: white;
+    text-decoration: none;
+    padding: 8px 14px;
+    background-color: #0d6efd;
+    border-radius: 5px;
 }
 
-.button-container button:hover {
-    background-color: #0056b3;
+nav ul.menu li a.button:hover {
+    background-color: #084cdf;
 }
 
-.button-container button:active {
-    background-color: #004085;
-}
-
-.button-container .cancel-btn {
-    background-color: #DC3545;
-}
-
-.button-container .cancel-btn:hover {
-    background-color: #c82333;
-}
-
-.button-container .cancel-btn:active {
-    background-color: #bd2130;
-}
-
-/* Responsividade */
-@media (max-width: 768px) {
-    body {
-        margin: 10px;
+/* Responsivo */
+@media (max-width: 600px) {
+    .form-container, .button-container {
+        padding: 10px;
     }
 
-    table, th, td {
-        font-size: 14px;
+    nav ul.menu {
+        flex-direction: column;
+        align-items: flex-start;
     }
+}
+/* NavBar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #0d6efd;
+    padding: 10px 20px;
+    color: white;
+    margin-bottom: 20px;
+    position: sticky;
+}
 
-    input[type="text"], input[type="hidden"] {
-        width: 100%;
-    }
+.nav-brand {
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
+    margin-right: 20px;
+}
 
-    .button-container button {
-        width: 100%;
-    }
+.nav-left .nav-link {
+    margin-right: 15px;
+    text-decoration: none;
+    color: white;
+    font-weight: 500;
+}
+
+.nav-left .nav-link:hover {
+    text-decoration: underline;
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.nav-user {
+    font-style: italic;
+}
+
+.nav-button {
+    padding: 6px 12px;
+    background-color: #ffc107;
+    color: #000;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: 500;
+}
+
+.nav-button:hover {
+    background-color: #e0a800;
 }

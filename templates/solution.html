@@ -3,22 +3,33 @@
 <html lang="pt">
 <head>
     <meta charset="UTF-8">
-    <title>Solução</title>
+    <title>Solution</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
 </head>
 <body>
-    <h1>Solução</h1>
-    <form method="POST">
-        <input type="hidden" name="classname" value="Solution">
-        <label>ID do Ticket: <input type="text" name="ticket_id" value="{{ data['ticket_id'] }}"></label>
-        <label>Resumo da Resolução: <input type="text" name="resolution_summary" value="{{ data['resolution_summary'] }}"></label>
-        <label>Data Resolvida: <input type="text" name="solved_date" value="{{ data['solved_date'] }}"></label>
-        <div>
-            <button type="submit" name="option" value="save" {{ 'disabled' if butedit == 'disabled' }}>Salvar</button>
-            <button type="submit" name="option" value="cancel" {{ 'disabled' if butedit == 'disabled' }}>Cancelar</button>
-        </div>
-    </form>
 
-    {% include "controls.html" with context %}
+    <h1>Solution</h1>
+    <p><strong>User logado:</strong> {{ ulogin }}</p>
+    {% if msg %}<p style="color: red;">{{ msg }}</p>{% endif %}
+
+    <div class="form-container">
+        <form method="post">
+            <input type="hidden" name="classname" value="Solution">
+
+            <label>ID:</label>
+            <input type="text" name="solution_id" value="{{ data['solution_id'] }}" readonly>
+
+            <label>Ticket ID:</label>
+            <input type="text" name="ticket_id" value="{{ data['ticket_id'] }}" {% if butedit == 'disabled' %}readonly{% endif %}>
+
+            <label>Resumo:</label>
+            <input type="text" name="resolution_summary" value="{{ data['resolution_summary'] }}" {% if butedit == 'disabled' %}readonly{% endif %}>
+
+            <label>Data de Resolução:</label>
+            <input type="text" name="solved_date" value="{{ data['solved_date'] }}" {% if butedit == 'disabled' %}readonly{% endif %}>
+
+            {% include 'controls.html' %}
+        </form>
+    </div>
 </body>
 </html>

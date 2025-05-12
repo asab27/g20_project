@@ -4,92 +4,88 @@ Created on Fri May  2 21:10:00 2025
 
 @author: Miguel
 """
-
 from flask import Flask, render_template, request, session
-from classes.agent import Agent
+from datafile import filename
 from classes.ticket import Ticket
+from classes.agent import Agent
 from classes.solution import Solution
 from classes.ticket_assignment import TicketAssignment
-from datafile import filename
+from classes.userlogin import Userlogin
+
+from subs.apps_userlogin import apps_userlogin
+from subs.apps_ticket import apps_ticket
+from subs.apps_agent import apps_agent
+from subs.apps_solution import apps_solution
+from subs.apps_ticketassignment import apps_ticketassignment
 
 app = Flask(__name__)
 app.secret_key = 'BAD_SECRET_KEY'
 
+# Carregar dados
+Ticket.read(filename)
+Agent.read(filename)
+Solution.read(filename)
+TicketAssignment.read(filename)
+Userlogin.read(filename)
 
-class_map = {
-    "Agent": Agent,
-    "Ticket": Ticket,
-    "Solution": Solution,
-    "TicketAssignment": TicketAssignment
-}
+# Helper para obter o grupo do user
+def get_user_group():
+    ulogin = session.get("user")
+    group = None
+    if ulogin:
+        user_id = Userlogin.get_user_id(ulogin)
+        if user_id in Userlogin.obj:
+            group = Userlogin.obj[user_id].usergroup
+    return group
 
-for cls in class_map.values():
-    cls.read(filename)
-
-prev_option = ""
-
-@app.route("/", methods=["POST", "GET"])
+# Página inicial
+@app.route("/")
 def index():
-    global prev_option
-    butshow, butedit = "enabled", "disabled"
+    ulogin = session.get("user")
+    group = get_user_group()
+    return render_template("index.html", ulogin=ulogin, group=group, page_class="index-background")
 
-    option = request.form.get("option") or request.args.get("option")
-    classname = request.form.get("classname") or request.args.get("classname") or "Ticket"
+# Login
+@app.route("/login")
+def login():
+    return render_template("login.html", user="", password="", ulogin=session.get("user"), resul="", group=None)
 
-    class_obj = class_map.get(classname)
-    if not class_obj:
-        return "Classe não encontrada!", 400
+@app.route("/logoff")
+def logoff():
+    session.pop("user", None)
+    return render_template("index.html", ulogin=None, group=None)
 
-    if option == "edit":
-        butshow, butedit = "disabled", "enabled"
-    elif option == "delete":
-        obj = class_obj.current()
-        if obj:
-            class_obj.remove(getattr(obj, class_obj.att[0]))
-            if not class_obj.previous():
-                class_obj.first()
-    elif option == "insert":
-        butshow, butedit = "disabled", "enabled"
-    elif option == "cancel":
-        pass
-    elif prev_option == 'insert' and option == 'save':
-        new_id = class_obj.get_id(0)
-        values = [request.form.get(attr, '') for attr in class_obj.att[1:]]
-        strobj = str(new_id) + ';' + ';'.join(values)
-        obj = class_obj.from_string(strobj)
-        class_obj.insert(getattr(obj, class_obj.att[0]))
-        class_obj.last()
-    elif option == 'edit' and prev_option == 'save':
-        obj = class_obj.current()
-        for attr in class_obj.att[1:]:
-            setattr(obj, attr, request.form.get(attr, ''))
-        class_obj.update(getattr(obj, class_obj.att[0]))
-    elif option == "first":
-        class_obj.first()
-    elif option == "previous":
-        class_obj.previous()
-    elif option == "next":
-        class_obj.nextrec()
-    elif option == "last":
-        class_obj.last()
-    elif option == 'exit':
-        return "<h1>Obrigado por usar este app</h1>"
+@app.route("/chklogin", methods=["POST", "GET"])
+def chklogin():
+    user = request.form["user"]
+    password = request.form["password"]
+    resul = Userlogin.chk_password(user, password)
+    if resul == "Valid":
+        session["user"] = user
+        group = get_user_group()
+        return render_template("index.html", ulogin=user, group=group)
+    return render_template("login.html", user=user, password=password, ulogin=None, resul=resul, group=None)
 
-    prev_option = option
-    obj = class_obj.current()
+# Subapps
+@app.route("/Userlogin", methods=["POST", "GET"])
+def userlogin():
+    return apps_userlogin()
 
-    data = {}
-    if obj:
-        for attr in class_obj.att:
-            data[attr] = getattr(obj, attr)
-    else:
-        for attr in class_obj.att:
-            data[attr] = ""
+@app.route("/Ticket", methods=["POST", "GET"])
+def ticket():
+    return apps_ticket()
 
-    return render_template(f"{classname.lower()}.html",
-                           butshow=butshow, butedit=butedit,
-                           data=data, classname=classname,
-                           ulogin=session.get("user"))
+@app.route("/Agent", methods=["POST", "GET"])
+def agent():
+    return apps_agent()
 
-if __name__ == '__main__':
-    app.run(debug=True)
+@app.route("/Solution", methods=["POST", "GET"])
+def solution():
+    return apps_solution()
+
+@app.route("/TicketAssignment", methods=["POST", "GET"])
+def ticket_assignment():
+    return apps_ticketassignment()
+
+if __name__ == "__main__":
+    app.run()

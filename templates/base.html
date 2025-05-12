@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="pt">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Flask demo PCII</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    {% block title %}{% endblock %}
+  </head>
+  <body class="{{ page_class }}">
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+      <div class="nav-left">
+        <a href="/" class="nav-brand">Tech Support</a>
+        {% if ulogin %}
+            <a class="nav-link" href="/Ticket">Tickets</a>
+            <a class="nav-link" href="/Agent">Agents</a>
+            <a class="nav-link" href="/Solution">Solutions</a>
+            <a class="nav-link" href="/TicketAssignment">Assignments</a>
+            {% if group == "admin" %}
+                <a class="nav-link" href="/Userlogin">Users</a>
+            {% endif %}
+
+        {% endif %}
+      </div>
+      <div class="nav-right">
+        {% if ulogin %}
+            <span class="nav-user">👤 {{ ulogin }}</span>
+            <a class="nav-button" href="/logoff">Logout</a>
+        {% else %}
+            <a class="nav-button" href="/login">Login</a>
+        {% endif %}
+      </div>
+    </nav>
+
+    {% block content %}{% endblock %}
+  </body>
+</html>

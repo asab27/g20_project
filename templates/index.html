@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    <title>Gestão de Suporte Técnico</title>
+{% endblock %}
+
+{% block content %}
+<div class="form-container">
+    <h1>Bem-vindo ao Sistema de Suporte Técnico</h1>
+
+    {% if ulogin %}
+        <p><strong>Utilizador autenticado:</strong> {{ ulogin }}</p>
+        <p>Utilize o menu acima para navegar pelas diferentes entidades.</p>
+    {% else %}
+        <p>Por favor, <a class="button" href="/login">efetue login</a> para aceder ao sistema.</p>
+    {% endif %}
+</div>
+{% endblock %}
+
