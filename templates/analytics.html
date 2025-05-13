@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <title>Análise de Tickets</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+</head>
+<body>
+
+    <h1>Análise de Tickets</h1>
+    <p><strong>User logado:</strong> {{ ulogin }}</p>
+
+    <!-- Tabela: Tickets por Status -->
+    <div class="form-container">
+        <h2>📊 Tickets por Status</h2>
+        {% if status_counts %}
+        <table>
+            <thead>
+                <tr><th>Status</th><th>Total</th></tr>
+            </thead>
+            <tbody>
+                {% for status, count in status_counts.items() %}
+                <tr><td>{{ status }}</td><td>{{ count }}</td></tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+            <p>Não há dados disponíveis.</p>
+        {% endif %}
+    </div>
+
+    <!-- Gráfico de Status -->
+    <div class="form-container">
+        <h3>Gráfico de Status</h3>
+        {% if img_status %}
+        <img src="data:image/png;base64,{{ img_status }}" alt="Gráfico Status" style="width:100%; max-width:600px;">
+        {% endif %}
+    </div>
+
+    <!-- Tabela: Tickets por Mês -->
+    <div class="form-container">
+        <h2>📅 Tickets por Mês</h2>
+        {% if monthly_counts %}
+        <table>
+            <thead>
+                <tr><th>Mês</th><th>Total</th></tr>
+            </thead>
+            <tbody>
+                {% for month, count in monthly_counts.items() %}
+                <tr><td>{{ month }}</td><td>{{ count }}</td></tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+            <p>Não há dados disponíveis para submissão mensal.</p>
+        {% endif %}
+    </div>
+
+    <!-- Gráfico por Mês -->
+    <div class="form-container">
+        <h3>Gráfico por Mês</h3>
+        {% if img_monthly %}
+        <img src="data:image/png;base64,{{ img_monthly }}" alt="Gráfico Mês" style="width:100%; max-width:600px;">
+        {% endif %}
+    </div>
+
+    <!-- Tempo Médio -->
+    <div class="form-container">
+        <h2>⏱️ Tempo Médio de Resolução</h2>
+        {% if avg_resolution_time %}
+            <p><strong>{{ avg_resolution_time }}</strong> dias</p>
+        {% else %}
+            <p>Dados de tempo de resolução indisponíveis.</p>
+        {% endif %}
+    </div>
+    <div class="form-container" style="text-align: center; margin-top: 30px;">
+        <a href="/" class="button1">Sair</a>
+    </div>
+
+</body>
+</html>
