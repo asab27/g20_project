@@ -10,7 +10,7 @@ import matplotlib.pyplot as plt
 import io
 import base64
 from flask import render_template, session
-
+from datafile import filename
 def plot_to_img(fig):
     buf = io.BytesIO()
     fig.savefig(buf, format="png", bbox_inches="tight")
@@ -20,7 +20,7 @@ def plot_to_img(fig):
 def app_analytics():
     ulogin = session.get("user")
 
-    con = sqlite3.connect('data/tech_support.db')
+    con = sqlite3.connect(filename)
 
     # Tickets
     tickets_df = pd.read_sql_query("SELECT * FROM Ticket", con)
