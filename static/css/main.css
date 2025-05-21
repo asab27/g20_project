@@ -30,7 +30,7 @@ body.index-background {
 
 .index-content {
     padding: 80px 40px;
-    background-color: rgba(0, 0, 0); /* preto */
+    background-color: rgb(0, 0, 0); /* preto */
     border-radius: 12px;
     max-width: 600px;
     margin: 100px auto;
