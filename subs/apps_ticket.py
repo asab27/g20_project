@@ -7,6 +7,7 @@ Created on Mon May 12 17:16:01 2025
 from flask import render_template, request, session
 from classes.ticket import Ticket
 
+
 prev_option = ""
 
 def apps_ticket():
@@ -61,8 +62,7 @@ def apps_ticket():
         Ticket.nextrec()
     elif option == "last":
         Ticket.last()
-    elif option == "exit":
-        return render_template("index.html", ulogin=ulogin)
+    
 
     prev_option = option
     obj = Ticket.current()

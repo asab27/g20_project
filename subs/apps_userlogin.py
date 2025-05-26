@@ -48,8 +48,6 @@ def apps_userlogin():
             Userlogin.nextrec()
         elif option == "last":
             Userlogin.last()
-        elif option == 'exit':
-            return render_template("index.html", ulogin=session.get("user"))
         prev_option = option
         obj = Userlogin.current()
         if option == 'insert' or len(Userlogin.lst) == 0:

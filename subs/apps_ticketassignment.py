@@ -7,6 +7,7 @@ Created on Mon May 12 17:28:55 2025
 from flask import render_template, request, session
 from classes.ticket_assignment import TicketAssignment
 
+
 prev_option = ""
 
 def apps_ticketassignment():
@@ -62,8 +63,7 @@ def apps_ticketassignment():
         TicketAssignment.nextrec()
     elif option == "last":
         TicketAssignment.last()
-    elif option == "exit":
-        return render_template("index.html", ulogin=ulogin)
+
 
     prev_option = option
     obj = TicketAssignment.current()

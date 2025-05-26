@@ -64,7 +64,7 @@ def chklogin():
     if resul == "Valid":
         session["user"] = user
         group = get_user_group()
-        return render_template("index.html", ulogin=user, group=group)
+        return render_template("index.html", ulogin=user, group=group, page_class="index-background")
     return render_template("login.html", user=user, password=password, ulogin=None, resul=resul, group=None)
 
 # Subapps

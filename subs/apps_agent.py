@@ -7,6 +7,8 @@ Created on Mon May 12 17:26:16 2025
 from flask import render_template, request, session
 from classes.agent import Agent
 
+
+
 prev_option = ""
 
 def apps_agent():
@@ -61,8 +63,7 @@ def apps_agent():
         Agent.nextrec()
     elif option == "last":
         Agent.last()
-    elif option == "exit":
-        return render_template("index.html", ulogin=ulogin)
+
 
     prev_option = option
     obj = Agent.current()

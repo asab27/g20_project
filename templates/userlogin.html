@@ -7,7 +7,6 @@
 {% block content %}
 <div class="dados">
     <br><br><br>
-    <img src="{{ url_for('static', filename='images/Userlogin.jpg')}}" alt="userlogin" width="200" height="200">
     <h1>Userlogin</h1>
     <br>
 
@@ -18,7 +17,6 @@
     {% endif %}
     <button id="save" type="submit" form="form" {{butedit}} class="button1">Save</button>
     <button id="cancel" type="button" {{butedit}} onclick="window.location.href = '/Userlogin?option=cancel'" class="button1">Cancel</button>
-    <button id="exit" type="button" {{butshow}} onclick="window.location.href = '/Userlogin?option=exit'" class="button1">Exit</button>
     <br><br>
 
     <form id="form" action="/Userlogin?option=save" method="post">
@@ -53,5 +51,8 @@
     {% endif %}
     <br>
     <p style="color: red;">{{msg}}</p>
+</div>
+<div class="form-container" style="text-align: center; margin-top: 30px;">
+    <a href="/" class="button1">Sair</a>
 </div>
 {% endblock %}

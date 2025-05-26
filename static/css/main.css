@@ -13,8 +13,9 @@ Created on Fri May  2 21:24:13 2025
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
     padding: 20px;
-    background-color: #f8f9fa;
+    background-color: #f0f2f5;
     color: #333;
 }
 
@@ -25,12 +26,13 @@ body.index-background {
     background-repeat: no-repeat;
     background-attachment: fixed;
     min-height: 100vh;
-    color: white;
+    color: #fff;
 }
 
 .index-content {
     padding: 80px 40px;
-    background-color: rgb(0, 0, 0); /* preto */
+    background-color: rgba(255, 255, 255, 0.9);
+    color:#000;
     border-radius: 12px;
     max-width: 600px;
     margin: 100px auto;
@@ -45,28 +47,34 @@ h1 {
 }
 
 /* Formulário */
-.form-container {
-    max-width: 600px;
+.form-container, .dados {
+    max-width: 750px;
     margin: auto;
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0px 0px 10px rgba(0,0,0,0.05);
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    transition: all 0.3s ease;
 }
 
-.form-container label {
+.form-container label, .dados label {
     display: block;
-    margin-top: 10px;
-    font-weight: 500;
+    margin-top: 15px;
+    font-weight: 600;
+    color:#333;
 }
 
-.form-container input {
+.form-container input, .dados input {
     width: 100%;
-    padding: 8px 10px;
-    margin-top: 5px;
+    padding: 10px 14px;
+    margin-top: 8px;
     border: 1px solid #ccc;
-    border-radius: 5px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+input:focus{
+    border-color: #0d6efd;
+    outline:none;
 }
 
 /* Botões */
@@ -75,20 +83,21 @@ h1 {
     text-align: center;
 }
 
-.button-container button {
-    padding: 10px 20px;
-    margin: 5px;
+button, .button1 {
+    padding: 12px 24px;
+    margin-top: 15px;
     background-color: #0d6efd;
     color: white;
     border: none;
-    border-radius: 6px;
-    font-size: 15px;
+    border-radius: 8px;
+    font-weight: 600;
     cursor: pointer;
-    transition: background-color 0.2s ease;
+    transition: background-color 0.3s ease, transform 0.2s;
 }
 
-.button-container button:hover {
-    background-color: #084cdf;
+button:hover, .button1:hover{
+    background-color: #0b5ed7;
+    transform: translateY(-2px);
 }
 
 .button-container button.cancel-btn {
@@ -106,8 +115,10 @@ button:disabled {
 
 /* Mensagens */
 p {
-    margin-top: 10px;
-    font-size: 14px;
+    margin-top: 20px;
+    font-size: 16px;
+    text-align: center;
+    color: #333;
 }
 
 p strong {
@@ -117,23 +128,25 @@ p strong {
 /* Navegação */
 nav {
     background-color: #0d6efd;
-    padding: 10px;
-    margin-bottom: 20px;
+    padding: 12px 24px;
+    margin-bottom: 30px;
+    border-radius: 8px;
 }
 
 nav ul.menu {
-    list-style-type: none;
+    list-style: none;
     display: flex;
     justify-content: flex-start;
     gap: 10px;
 }
 
 nav ul.menu li a.button {
-    color: white;
+    color: #fff;
     text-decoration: none;
-    padding: 8px 14px;
+    padding: 8px 16px;
     background-color: #0d6efd;
-    border-radius: 5px;
+    border-radius: 6px;
+    transition: background-color 0.2s;
 }
 
 nav ul.menu li a.button:hover {
@@ -142,13 +155,16 @@ nav ul.menu li a.button:hover {
 
 /* Responsivo */
 @media (max-width: 600px) {
-    .form-container, .button-container {
-        padding: 10px;
+    .navbar, .form-container, .button-container, .dados {
+        padding: 15px;
+        flex-direction:column;
+        align-items: flex-start;
     }
 
     nav ul.menu {
         flex-direction: column;
         align-items: flex-start;
+        gap: 8 px;
     }
 }
 /* NavBar */

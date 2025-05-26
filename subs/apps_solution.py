@@ -7,7 +7,9 @@ Created on Mon May 12 17:27:14 2025
 from flask import render_template, request, session
 from classes.solution import Solution
 
+
 prev_option = ""
+
 
 def apps_solution():
     global prev_option
@@ -61,8 +63,7 @@ def apps_solution():
         Solution.nextrec()
     elif option == "last":
         Solution.last()
-    elif option == "exit":
-        return render_template("index.html", ulogin=ulogin)
+    
 
     prev_option = option
     obj = Solution.current()
